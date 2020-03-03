@@ -1,4 +1,7 @@
 import { Employee } from "./employee";
+import { Position } from "../enums/Position";
+import randomNumber from "../uitls/randomNumber"
+import * as data from "./data/names.json";
 
 export class Company {
 
@@ -37,7 +40,10 @@ export class Company {
     }
 
     private createEmployee():Employee {
-        const newEmployee = new Employee("Josh", "Ganote", 10000);
+        const randomNum: number = randomNumber(0,10);
+        const firstName: string = data.first_names[0];
+
+        const newEmployee = new Employee(firstName, "Ganote", 10000, Position.PRESIDENT);
         this.employees.push(newEmployee); // {firstName: 'Josh', ...}
         return newEmployee;
     }
