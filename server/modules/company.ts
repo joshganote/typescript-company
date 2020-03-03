@@ -40,10 +40,11 @@ export class Company {
     }
 
     private createEmployee():Employee {
-        const randomNum: number = randomNumber(0,10);
-        const firstName: string = data.first_names[0];
+        //const randomNum: number = randomNumber(0,10);
+        const firstName: string = data.first_names[randomNumber(0, data.first_names.length - 1)];
+        const lastName: string = data.last_names[randomNumber(0, data.last_names.length - 1)];
 
-        const newEmployee = new Employee(firstName, "Ganote", 10000, Position.PRESIDENT);
+        const newEmployee = new Employee(firstName, lastName, 10000, Position.PRESIDENT);
         this.employees.push(newEmployee); // {firstName: 'Josh', ...}
         return newEmployee;
     }
