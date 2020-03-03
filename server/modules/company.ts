@@ -21,7 +21,7 @@ export class Company {
         while(this.employees.length < 10){
             this.createEmployee();
         }
-        console.log(this.employees);
+        //console.log(this.employees);
         //bind.this will transfer the scope from one function to the next
         this.timer = setInterval(this.onTimerInterval.bind(this), 5000);
         this.createEmployee();
@@ -39,13 +39,11 @@ export class Company {
         // Some random event happens here!
     }
 
-    private createEmployee():Employee {
-        //const randomNum: number = randomNumber(0,10);
-        const firstName: string = data.first_names[randomNumber(0, data.first_names.length - 1)];
-        const lastName: string = data.last_names[randomNumber(0, data.last_names.length - 1)];
-
-        const newEmployee = new Employee(firstName, lastName, 10000, Position.PRESIDENT);
-        this.employees.push(newEmployee); // {firstName: 'Josh', ...}
-        return newEmployee;
-    }
+    private createEmployee(): void {
+        const newEmployee = new Employee();
+        newEmployee.promote();
+        newEmployee.promote();
+        console.log(newEmployee.getFullName())
+        this.employees.push(newEmployee);
+      }
 }
