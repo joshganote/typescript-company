@@ -1,6 +1,11 @@
 import express = require('express');
+import { Company } from './modules/company';
 
 const app: express.Application = express();
+const company = new Company();
+company.init();
+//company.onTimerInterval(); will not work because it is set to private in company.ts file
+
 
 app.get('/', (req:express.Request, res:express.Response) => {
     res.send("Hello World");
