@@ -2,11 +2,12 @@ import { Position } from "../enums/Position";
 import randomNumber from "../uitls/randomNumber"
 import * as data from "./data/names.json";
 import { MeritIncrease } from "../enums/MeritIncrease";
+import { Person } from "./person";
 
 
-export class Employee {
+export class Employee implements IPERSON {
     // ? let's us use a name if we already have one, if not pick a random one
-    private firstName: string;
+    private firstName: string;  //extending the Person already has first and last name
     private lastName: string;
     private salary: number;
     private position: Position;
@@ -17,6 +18,7 @@ export class Employee {
         salary?: number, 
         position?: Position
     ) {
+        //super(firstName, lastName)super calls the parent construcor in Person class
         // this reads.. hey if you have a first name use this, if not then use this
         this.firstName = firstName ? firstName: this.createFirstName();
         this.lastName = lastName ? lastName : this.createLastName();
@@ -35,7 +37,7 @@ export class Employee {
         //     this.position = Position.ANALYST
         // }
         switch(this.position){
-            case Position.ASSOCIATE:
+            case Position.ASSOCIATE: 
                 this.position = Position.ANALYST;
                 this.salary = this.meritIncrease(MeritIncrease.ANALYST);
                 break;
