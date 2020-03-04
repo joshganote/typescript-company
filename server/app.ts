@@ -11,6 +11,10 @@ app.get('/', (req:express.Request, res:express.Response) => {
     res.send("Hello World");
 });
 
+app.get('/api/log', (req:express.Request, res:express.Response) => {
+    res.send(company.getFullHistory());
+});
+
 app.listen(3000, () => {
     console.log(`TypeScript Company listening on port: 3000`);
 })
