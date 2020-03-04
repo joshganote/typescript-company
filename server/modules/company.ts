@@ -20,7 +20,7 @@ export class Company {
     private timerCount: number = 0;
     private employees: Employee[];
     private historyLog: HistoryLog = new HistoryLog();
-    private readonly NUM_OF_STARTING_EMPLOYEES: number = 15;
+    private readonly NUM_OF_STARTING_EMPLOYEES: number = 250;
     private readonly INTERVAL_TICK: number = 0.01 * 1000;
     constructor() {
         this.timerCount = 0;
@@ -53,7 +53,7 @@ export class Company {
         const randomChance = randomNumber(1, 100);
 
         switch (randomChance) {
-            case 1 || 5 || 6 || 7 || 8 || 9:
+            case 1 || 5 || 6 || 7 || 8 || 9 || 10 || 11 || 12 || 13 || 14:
                 // new hire
                 this.createEmployee();
                 break;
@@ -110,5 +110,22 @@ export class Company {
 
     public getFullHistory(): string[] {
        return this.historyLog.getLog();
+    }
+
+    public getTotalSalary(): number {
+        let totalSalary: number = 0;
+        for(let employee of this.employees) {
+            totalSalary += employee.getSalary();
+        }
+        return totalSalary;
+    }
+
+    public getEmployees(): string[] {
+        const namesOfEmployees: string[] = []
+
+        for(let employee of this.employees) {
+            namesOfEmployees.push(employee.getFullName())
+        }
+        return namesOfEmployees;
     }
 }
