@@ -2,6 +2,7 @@ import { Employee } from "./employee";
 import { Position } from "../enums/Position";
 import randomNumber from "../uitls/randomNumber"
 import * as data from "./data/names.json";
+import { HistoryLog } from "../uitls/HistoryLog";
 
 export class Company {
 
@@ -9,6 +10,7 @@ export class Company {
     //timer: NodeJS.Timeout = {};
     private timerCount: number = 0;
     private employees: Employee[];
+    private historyLog: HistoryLog = new HistoryLog();
 
     constructor() {
         this.timerCount = 0;
@@ -16,11 +18,11 @@ export class Company {
     }
 
     public init():void {
-        console.log("I'm a company");
 
         while(this.employees.length < 10){
             this.createEmployee();
         }
+        console.log(this.historyLog.getLog());
         //console.log(this.employees);
         //bind.this will transfer the scope from one function to the next
         this.timer = setInterval(this.onTimerInterval.bind(this), 5000);
@@ -39,11 +41,12 @@ export class Company {
         // Some random event happens here!
     }
 
-    private createEmployee(): void {
+    private createEmployee(): Employee {
         const newEmployee = new Employee();
         newEmployee.promote();
         newEmployee.promote();
-        console.log(newEmployee.getFullName())
         this.employees.push(newEmployee);
+        this.historyLog.addNewEmployee(newEmployee);
+        return newEmployee
       }
 }
